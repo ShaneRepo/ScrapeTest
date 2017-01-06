@@ -6,5 +6,5 @@ bsObj = BeautifulSoup(html)
 for sibling in bsObj.find("table", {"id":"giftList"}).tr.next_siblings:
     print(sibling)
 # The BeautifulSoup next_siblings() function makes it trivial to collect data from tables,
-# especially ones with title rows.
+# especially ones with title rows.glighoig
 
