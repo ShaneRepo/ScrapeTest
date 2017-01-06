@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 html = urlopen("http://www.pythonscraping.com/pages/page3.html")
 bsObj = BeautifulSoup(html)
 
-for child in bsObj.find("table", {"id":"giftList"}).children:
-    print(child)
-# This code prints a list of the product rows in the giftList table.
+for sibling in bsObj.find("table", {"id":"giftList"}).tr.next_siblings:
+    print(sibling)
+# The BeautifulSoup next_siblings() function makes it trivial to collect data from tables,
+# especially ones with title rows.
+
