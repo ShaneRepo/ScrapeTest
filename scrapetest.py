@@ -1,10 +1,12 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-html = urlopen("http://www.pythonscraping.com/pages/page3.html")
-bsObj = BeautifulSoup(html)
+import re
 
-for sibling in bsObj.find("table", {"id":"giftList"}).tr.next_siblings:
-    print(sibling)
-# The BeautifulSoup next_siblings() function makes it trivial to collect data from tables,
-# especially ones with title rows.glighoig
+html = urlopen("http://en.wikipedia.org/wiki/Kevin_Bacon")
+bsObj = BeautifulSoup(html)
+for link in bsObj.find("div", {"id":"bodyContent"}).findAll("a",
+                                                            href=re.compile("^(/wiki/)((?!:).)*$")):
+    if 'href' in link.attrs:
+        print(link.attrs['href'])
+# A list of article URLs Keven Bacon links to.
 
